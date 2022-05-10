@@ -1,0 +1,118 @@
+class Stack:
+    def __init__(self):
+        self.top = None
+        self._size = 0
+        self.maior = 0
+        self.menor = 0
+        
+
+    def push(self, elem):
+        
+        node = Node(elem)
+        node.next = self.top
+        self.top = node
+        self._size= self._size + 1
+
+        # if (elem > self.maior):
+        self.maior = node.data
+
+        # if (elem < self.menor):
+        self.menor = node.data
+            
+    def pop(self):
+        
+        if self._size == 0:
+            print("empty stack")
+        else:
+            if(self._size != 0):
+                node = self.top
+                self.top = self.top.next
+                self._size = self._size - 1
+                print(node.data)
+
+    
+    def getMin(self):
+        auxiliar = self.top
+        count = 1
+
+        if self._size == 0:
+            print("empty stack")
+
+        # elif auxiliar.data == self.menor:
+            # print(auxiliar.data)
+            # print(self.menor)]
+        elif self.menor > 0:
+            self.menor = auxiliar.data
+            while(count < self._size):
+                if(auxiliar.data < self.menor):
+                    self.menor = auxiliar.data  
+                auxiliar = auxiliar.next                
+                count += 1
+            # print(auxiliar.data)
+            print(self.menor)
+    
+    def getMax(self):
+
+        aux = self.top
+        count = 1
+        self.maior = 0
+        
+        if self._size == 0:
+            print("empty stack")
+        # elif aux.data == self.maior:
+            # print(aux.data)
+            # print(self.maior)
+        else:
+            while (count < self._size):
+                if (aux.data > self.maior):
+                    self.maior = aux.data
+                aux = aux.next    
+                count += 1
+            # print(aux.data)
+            print(self.maior)
+           
+        
+    # def getMax(self):
+        
+    #     if self._size == 0:
+    #         print("empty stack")
+    #     else:
+    #         pilha.atualizarMaior()
+    
+    # def getMin(self):
+    #     if self._size == 0:
+    #         print("empty stack")
+
+    #     else:
+    #         pilha.atualizarMenor()
+    
+    
+
+if __name__ == "__main__":
+    pilha = Stack()
+
+    n = int(input())
+    for i in range(n):
+
+        entrada = input()
+        if "getMax" in entrada:
+            pilha.getMax()
+        if "getMin" in entrada:
+            pilha.getMin()
+        if "push" in entrada:
+            valora, valorb = entrada.split()
+            pilha.push(int(valorb))
+        if "pop" in entrada:
+            pilha.pop()
+            
+        
+        
+
+# pilha = Stack()
+# pilha.push(3)
+# pilha.push(2.3)
+# pilha.push(4)
+# pilha.push(56.2)
+# print((pilha))
+# pilha.getMax()
+# pilha.getMin()
